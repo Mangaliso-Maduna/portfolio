@@ -1,0 +1,803 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link
+		href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&subset=devanagari,latin-ext"
+		rel="stylesheet">
+
+	<title>Portfolio | Mangaliso Maduna</title>
+
+	<link rel="shortcut icon" type="image/icon" href="assets/logo/plogo.png" />
+	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/bootsnav.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="assets/css/responsive.css">
+
+	<style>
+		/* =============================================
+		   BASE & RESET
+		   ============================================= */
+		*,
+		*::before,
+		*::after {
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: 'Poppins', sans-serif;
+			background: #0d0d0d;
+			color: #ccc;
+			margin: 0;
+			padding: 0;
+		}
+
+		/* =============================================
+		   NAV — matches existing site
+		   ============================================= */
+		.top-area {
+			position: relative;
+			z-index: 999;
+		}
+
+		.navbar-brand {
+			font-family: 'Poppins', sans-serif;
+			font-weight: 700;
+			font-size: 22px;
+			color: #fff !important;
+			letter-spacing: 1px;
+		}
+
+		/* =============================================
+		   PAGE HERO
+		   ============================================= */
+		.portfolio-hero {
+			background: linear-gradient(135deg, #0d0d0d 60%, #1a0000 100%);
+			padding: 120px 0 60px;
+			text-align: center;
+			border-bottom: 1px solid #1f1f1f;
+		}
+
+		.portfolio-hero h1 {
+			font-size: 48px;
+			font-weight: 700;
+			color: #fff;
+			margin-bottom: 12px;
+			letter-spacing: -1px;
+		}
+
+		.portfolio-hero h1 span {
+			color: #e8192c;
+		}
+
+		.portfolio-hero p {
+			font-size: 15px;
+			color: #888;
+			max-width: 480px;
+			margin: 0 auto 36px;
+			line-height: 1.7;
+		}
+
+		/* =============================================
+		   FILTER TABS
+		   ============================================= */
+		.filter-bar {
+			display: flex;
+			justify-content: center;
+			gap: 10px;
+			flex-wrap: wrap;
+		}
+
+		.filter-btn {
+			background: transparent;
+			border: 1px solid #333;
+			color: #888;
+			padding: 8px 22px;
+			border-radius: 30px;
+			font-family: 'Poppins', sans-serif;
+			font-size: 13px;
+			font-weight: 500;
+			cursor: pointer;
+			transition: all 0.25s ease;
+			letter-spacing: 0.5px;
+			text-transform: uppercase;
+		}
+
+		.filter-btn:hover {
+			border-color: #e8192c;
+			color: #e8192c;
+		}
+
+		.filter-btn.active {
+			background: #e8192c;
+			border-color: #e8192c;
+			color: #fff;
+		}
+
+		/* =============================================
+		   PROJECTS GRID
+		   ============================================= */
+		.projects-section {
+			padding: 70px 0 100px;
+			background: #0d0d0d;
+		}
+
+		.projects-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+			gap: 28px;
+		}
+
+		/* =============================================
+		   PROJECT CARD
+		   ============================================= */
+		.project-card {
+			background: #141414;
+			border: 1px solid #1e1e1e;
+			border-radius: 10px;
+			overflow: hidden;
+			transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.project-card:hover {
+			transform: translateY(-6px);
+			border-color: #e8192c;
+			box-shadow: 0 12px 40px rgba(232, 25, 44, 0.12);
+		}
+
+		.card-header-bar {
+			height: 4px;
+			width: 100%;
+		}
+
+		.card-header-bar.ds {
+			background: linear-gradient(90deg, #e8192c, #ff6b6b);
+		}
+
+		.card-header-bar.dev {
+			background: linear-gradient(90deg, #1a6ed8, #56b4f5);
+		}
+
+		.card-header-bar.bi {
+			background: linear-gradient(90deg, #9b59b6, #c39bd3);
+		}
+
+		.card-body-inner {
+			padding: 28px 28px 20px;
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.card-meta {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 14px;
+		}
+
+		.badge-category {
+			font-size: 10px;
+			font-weight: 600;
+			text-transform: uppercase;
+			letter-spacing: 1.2px;
+			padding: 4px 12px;
+			border-radius: 20px;
+		}
+
+		.badge-ds {
+			background: rgba(232, 25, 44, 0.15);
+			color: #e8192c;
+		}
+
+		.badge-dev {
+			background: rgba(26, 110, 216, 0.15);
+			color: #56b4f5;
+		}
+
+		.badge-bi {
+			background: rgba(155, 89, 182, 0.15);
+			color: #c39bd3;
+		}
+
+		.card-status {
+			font-size: 11px;
+			color: #555;
+		}
+
+		.card-status.complete {
+			color: #2ecc71;
+		}
+
+		.card-status.progress {
+			color: #f39c12;
+		}
+
+		.card-title {
+			font-size: 17px;
+			font-weight: 600;
+			color: #fff;
+			margin: 0 0 10px;
+			line-height: 1.4;
+		}
+
+		.card-description {
+			font-size: 13px;
+			color: #777;
+			line-height: 1.7;
+			margin: 0 0 20px;
+			flex: 1;
+		}
+
+		/* Tech tags */
+		.tech-tags {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 7px;
+			margin-bottom: 22px;
+		}
+
+		.tech-tag {
+			font-size: 10px;
+			font-weight: 500;
+			color: #666;
+			background: #1c1c1c;
+			border: 1px solid #2a2a2a;
+			padding: 3px 10px;
+			border-radius: 4px;
+			letter-spacing: 0.3px;
+		}
+
+		/* Card actions */
+		.card-actions {
+			display: flex;
+			gap: 10px;
+			padding: 16px 28px 22px;
+			border-top: 1px solid #1e1e1e;
+		}
+
+		.btn-github {
+			flex: 1;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 7px;
+			background: transparent;
+			border: 1px solid #2a2a2a;
+			color: #888;
+			padding: 9px 14px;
+			border-radius: 6px;
+			font-family: 'Poppins', sans-serif;
+			font-size: 12px;
+			font-weight: 500;
+			text-decoration: none;
+			transition: all 0.2s ease;
+			cursor: pointer;
+		}
+
+		.btn-github:hover {
+			border-color: #fff;
+			color: #fff;
+			text-decoration: none;
+		}
+
+		.btn-view {
+			flex: 1;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 7px;
+			background: #e8192c;
+			border: 1px solid #e8192c;
+			color: #fff;
+			padding: 9px 14px;
+			border-radius: 6px;
+			font-family: 'Poppins', sans-serif;
+			font-size: 12px;
+			font-weight: 500;
+			text-decoration: none;
+			transition: all 0.2s ease;
+		}
+
+		.btn-view:hover {
+			background: #c8001e;
+			border-color: #c8001e;
+			color: #fff;
+			text-decoration: none;
+		}
+
+		/* =============================================
+		   STATS BAR
+		   ============================================= */
+		.stats-bar {
+			background: #111;
+			border-top: 1px solid #1a1a1a;
+			border-bottom: 1px solid #1a1a1a;
+			padding: 28px 0;
+		}
+
+		.stats-bar .stat {
+			text-align: center;
+		}
+
+		.stats-bar .stat-number {
+			font-size: 36px;
+			font-weight: 700;
+			color: #e8192c;
+			line-height: 1;
+			margin-bottom: 4px;
+		}
+
+		.stats-bar .stat-label {
+			font-size: 12px;
+			color: #555;
+			text-transform: uppercase;
+			letter-spacing: 1.5px;
+		}
+
+		/* =============================================
+		   HIDDEN (for filter)
+		   ============================================= */
+		.project-card.hidden {
+			display: none;
+		}
+
+		/* =============================================
+		   BACK LINK
+		   ============================================= */
+		.back-home {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			color: #666;
+			font-size: 13px;
+			text-decoration: none;
+			margin-bottom: 0;
+			transition: color 0.2s;
+		}
+
+		.back-home:hover {
+			color: #e8192c;
+			text-decoration: none;
+		}
+
+		/* =============================================
+		   FOOTER
+		   ============================================= */
+		.portfolio-footer {
+			background: #0a0a0a;
+			border-top: 1px solid #1a1a1a;
+			padding: 30px 0;
+			text-align: center;
+		}
+
+		.portfolio-footer p {
+			color: #444;
+			font-size: 12px;
+			margin: 0;
+		}
+
+		/* =============================================
+		   RESPONSIVE
+		   ============================================= */
+		@media (max-width: 768px) {
+			.portfolio-hero h1 {
+				font-size: 32px;
+			}
+
+			.projects-grid {
+				grid-template-columns: 1fr;
+			}
+
+			.stats-bar .stat {
+				margin-bottom: 16px;
+			}
+		}
+	</style>
+</head>
+
+<body>
+
+	<!-- NAV -->
+	<header class="top-area">
+		<div class="header-area">
+			<nav class="navbar navbar-default bootsnav navbar-fixed dark no-background">
+				<div class="container">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+							<i class="fa fa-bars"></i>
+						</button>
+						<a class="navbar-brand" href="index.html">Mangaliso</a>
+					</div>
+					<div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
+						<ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+							<li><a href="index.html">home</a></li>
+							<li><a href="index.html#education">education</a></li>
+							<li><a href="index.html#skills">skills</a></li>
+							<li><a href="index.html#experience">experience</a></li>
+							<li class="active"><a href="portfolio.html">portfolio</a></li>
+							<li><a href="index.html#contact">contact</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</header>
+
+	<!-- HERO -->
+	<section class="portfolio-hero">
+		<div class="container">
+			<a href="index.html" class="back-home">
+				<i class="fa fa-arrow-left"></i> back to home
+			</a>
+			<h1 style="margin-top:24px;">my <span>projects</span><span style="color:#e8192c;">.</span></h1>
+			<p>A collection of data science, machine learning, and software engineering work — built to solve real
+				problems.</p>
+			<div class="filter-bar">
+				<button class="filter-btn active" data-filter="all">All Projects</button>
+				<button class="filter-btn" data-filter="ds">Data Science</button>
+				<button class="filter-btn" data-filter="dev">Development</button>
+				<button class="filter-btn" data-filter="bi">BI & Analytics</button>
+			</div>
+		</div>
+	</section>
+
+	<!-- STATS -->
+	<div class="stats-bar">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-6 col-sm-3 stat">
+					<div class="stat-number">9+</div>
+					<div class="stat-label">Projects</div>
+				</div>
+				<div class="col-xs-6 col-sm-3 stat">
+					<div class="stat-number">5</div>
+					<div class="stat-label">ML Models</div>
+				</div>
+				<div class="col-xs-6 col-sm-3 stat">
+					<div class="stat-number">3</div>
+					<div class="stat-label">Dashboards</div>
+				</div>
+				<div class="col-xs-6 col-sm-3 stat">
+					<div class="stat-number">2</div>
+					<div class="stat-label">Web Apps</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- PROJECTS -->
+	<section class="projects-section">
+		<div class="container">
+			<div class="projects-grid" id="projectsGrid">
+
+				<!-- ── DATA SCIENCE CARDS ──────────────────────────── -->
+
+				<div class="project-card" data-category="ds">
+					<div class="card-header-bar ds"></div>
+					<div class="card-body-inner">
+						<div class="card-meta">
+							<span class="badge-category badge-ds">Data Science</span>
+							<span class="card-status complete">● Complete</span>
+						</div>
+						<h3 class="card-title">Telco Customer Churn Prediction</h3>
+						<p class="card-description">Predicts customer churn on the IBM Telco dataset using Logistic
+							Regression, Decision Tree, and Random Forest. Best model achieved AUC of 0.831 with full
+							feature engineering and class-imbalance handling.</p>
+						<div class="tech-tags">
+							<span class="tech-tag">Python</span>
+							<span class="tech-tag">Scikit-learn</span>
+							<span class="tech-tag">Pandas</span>
+							<span class="tech-tag">Matplotlib</span>
+							<span class="tech-tag">SMOTE</span>
+						</div>
+					</div>
+					<div class="card-actions">
+						<a href="https://github.com/Mangaliso-Maduna/Telco_Customer_Churn-" target="_blank"
+							class="btn-github">
+							<i class="fa fa-github"></i> GitHub
+						</a>
+						<a href="https://github.com/Mangaliso-Maduna/Telco_Customer_Churn-" target="_blank"
+							class="btn-view">
+							<i class="fa fa-eye"></i> View Project
+						</a>
+					</div>
+				</div>
+
+				<div class="project-card" data-category="ds">
+					<div class="card-header-bar ds"></div>
+					<div class="card-body-inner">
+						<div class="card-meta">
+							<span class="badge-category badge-ds">Data Science</span>
+							<span class="card-status complete">● Complete</span>
+						</div>
+						<h3 class="card-title">Customer Segmentation — K-Means Clustering</h3>
+						<p class="card-description">K-Means segmentation on retail customer data with elbow method for
+							optimal k selection. Identified distinct personas with business-level recommendations per
+							cluster.</p>
+						<div class="tech-tags">
+							<span class="tech-tag">Python</span>
+							<span class="tech-tag">K-Means</span>
+							<span class="tech-tag">Seaborn</span>
+							<span class="tech-tag">Scikit-learn</span>
+							<span class="tech-tag">PCA</span>
+						</div>
+					</div>
+					<div class="card-actions">
+						<a href="https://github.com/Mangaliso-Maduna/Customer_Segmentation_K-Means_Clustering"
+							target="_blank" class="btn-github">
+							<i class="fa fa-github"></i> GitHub
+						</a>
+						<a href="https://github.com/Mangaliso-Maduna/Customer_Segmentation_K-Means_Clustering"
+							target="_blank" class="btn-view">
+							<i class="fa fa-eye"></i> View Project
+						</a>
+					</div>
+				</div>
+
+				<div class="project-card" data-category="ds">
+					<div class="card-header-bar ds"></div>
+					<div class="card-body-inner">
+						<div class="card-meta">
+							<span class="badge-category badge-ds">Data Science · NLP</span>
+							<span class="card-status complete">● Complete</span>
+						</div>
+						<h3 class="card-title">E-Learning Review Sentiment Analysis</h3>
+						<p class="card-description">NLP pipeline using a Naive Bayes classifier to categorise sentiment
+							in e-learning platform reviews. Includes TF-IDF vectorisation, confusion matrix evaluation,
+							and per-class precision/recall reporting.</p>
+						<div class="tech-tags">
+							<span class="tech-tag">Python</span>
+							<span class="tech-tag">NLTK</span>
+							<span class="tech-tag">Naive Bayes</span>
+							<span class="tech-tag">TF-IDF</span>
+							<span class="tech-tag">Regex</span>
+						</div>
+					</div>
+					<div class="card-actions">
+						<a href="https://github.com/Mangaliso-Maduna/sentimental_analysis" target="_blank"
+							class="btn-github">
+							<i class="fa fa-github"></i> GitHub
+						</a>
+						<a href="https://github.com/Mangaliso-Maduna/sentimental_analysis" target="_blank"
+							class="btn-view">
+							<i class="fa fa-eye"></i> View Project
+						</a>
+					</div>
+				</div>
+
+				<div class="project-card" data-category="ds">
+					<div class="card-header-bar ds"></div>
+					<div class="card-body-inner">
+						<div class="card-meta">
+							<span class="badge-category badge-ds">Data Science</span>
+							<span class="card-status complete">● Complete</span>
+						</div>
+						<h3 class="card-title">Second-Hand Car Price Prediction</h3>
+						<p class="card-description">Multiple linear regression model to predict used car prices.
+							Includes VIF-based multicollinearity analysis, OLS assumption checks, and residual
+							diagnostics throughout the modelling pipeline.</p>
+						<div class="tech-tags">
+							<span class="tech-tag">Python</span>
+							<span class="tech-tag">Statsmodels</span>
+							<span class="tech-tag">OLS</span>
+							<span class="tech-tag">VIF</span>
+							<span class="tech-tag">Pandas</span>
+						</div>
+					</div>
+					<div class="card-actions">
+						<a href="https://github.com/Mangaliso-Maduna" target="_blank" class="btn-github">
+							<i class="fa fa-github"></i> GitHub
+						</a>
+						<a href="https://github.com/Mangaliso-Maduna/Car_Price_Prediction" target="_blank"
+							class="btn-view">
+							<i class="fa fa-eye"></i> View Project
+						</a>
+					</div>
+				</div>
+
+				<div class="project-card" data-category="ds">
+					<div class="card-header-bar ds"></div>
+					<div class="card-body-inner">
+						<div class="card-meta">
+							<span class="badge-category badge-ds">Data Science · EDA</span>
+							<span class="card-status complete">● Complete</span>
+						</div>
+						<h3 class="card-title">Marvel Comics Writer & Character EDA</h3>
+						<p class="card-description">Exploratory analysis of Marvel Comics data using regex-based feature
+							extraction to surface patterns at writer level. Explores character frequency,
+							co-appearances, and issue-level trends.</p>
+						<div class="tech-tags">
+							<span class="tech-tag">Python</span>
+							<span class="tech-tag">Pandas</span>
+							<span class="tech-tag">Regex</span>
+							<span class="tech-tag">Matplotlib</span>
+							<span class="tech-tag">Seaborn</span>
+						</div>
+					</div>
+					<div class="card-actions">
+						<a href="https://github.com/Mangaliso-Maduna" target="_blank" class="btn-github">
+							<i class="fa fa-github"></i> GitHub
+						</a>
+						<a href="https://github.com/Mangaliso-Maduna" target="_blank" class="btn-view">
+							<i class="fa fa-eye"></i> View Project
+						</a>
+					</div>
+				</div>
+
+				<div class="project-card" data-category="ds">
+					<div class="card-header-bar ds"></div>
+					<div class="card-body-inner">
+						<div class="card-meta">
+							<span class="badge-category badge-ds">Data Science · EDA</span>
+							<span class="card-status complete">● Complete</span>
+						</div>
+						<h3 class="card-title">Furniture Store EDA — AI-Assisted Analysis</h3>
+						<p class="card-description">Exploratory data analysis of a furniture store dataset examining the
+							role of ChatGPT as a data analysis assistant. Documents where AI added value and where bugs
+							required human correction.</p>
+						<div class="tech-tags">
+							<span class="tech-tag">Python</span>
+							<span class="tech-tag">Pandas</span>
+							<span class="tech-tag">Matplotlib</span>
+							<span class="tech-tag">ChatGPT</span>
+							<span class="tech-tag">Jupyter</span>
+						</div>
+					</div>
+					<div class="card-actions">
+						<a href="https://github.com/Mangaliso-Maduna" target="_blank" class="btn-github">
+							<i class="fa fa-github"></i> GitHub
+						</a>
+
+						<a href="https://github.com/Mangaliso-Maduna/Furniture-Store-Data-Alanysis" target="_blank"
+							class="btn-view">
+							<i class="fa fa-eye"></i> View Project
+						</a>
+					</div>
+				</div>
+
+				<!-- ── BI & ANALYTICS CARDS ───────────────────────── -->
+
+				<div class="project-card" data-category="bi">
+					<div class="card-header-bar bi"></div>
+					<div class="card-body-inner">
+						<div class="card-meta">
+							<span class="badge-category badge-bi">BI & Analytics</span>
+							<span class="card-status complete">● Complete</span>
+						</div>
+						<h3 class="card-title">Zoho Desk IT Ticket Report Dashboard</h3>
+						<p class="card-description">Monthly IT support ticket performance dashboard for RandWater, built
+							in both HTML and Excel formats. Tracks volume, resolution time, category breakdowns, and
+							agent-level metrics for April and May 2026.</p>
+						<div class="tech-tags">
+							<span class="tech-tag">HTML/CSS</span>
+							<span class="tech-tag">Excel</span>
+							<span class="tech-tag">Zoho Desk</span>
+							<span class="tech-tag">Data Viz</span>
+						</div>
+					</div>
+					<div class="card-actions">
+						<a href="https://github.com/Mangaliso-Maduna/Furniture-Store-Data-Alanysis" target="_blank"
+							class="btn-github">
+							<i class="fa fa-github"></i> GitHub
+						</a>
+						<a href="https://github.com/Mangaliso-Maduna" target="_blank" class="btn-view">
+							<i class="fa fa-eye"></i> View Project
+						</a>
+					</div>
+				</div>
+
+				<!-- ── DEVELOPMENT CARDS ──────────────────────────── -->
+
+				<div class="project-card" data-category="dev">
+					<div class="card-header-bar dev"></div>
+					<div class="card-body-inner">
+						<div class="card-meta">
+							<span class="badge-category badge-dev">Development</span>
+							<span class="card-status complete">● Complete</span>
+						</div>
+						<h3 class="card-title">Python Churn Management Web App</h3>
+						<p class="card-description">Full-stack web application integrating a machine learning churn
+							prediction model into a Django backend. Built during an internship at the University of
+							Johannesburg as a 4IR showcase project.</p>
+						<div class="tech-tags">
+							<span class="tech-tag">Python</span>
+							<span class="tech-tag">Django</span>
+							<span class="tech-tag">ML Integration</span>
+							<span class="tech-tag">PostgreSQL</span>
+							<span class="tech-tag">Bootstrap</span>
+						</div>
+					</div>
+					<div class="card-actions">
+						<a href="https://github.com/Mangaliso-Maduna" target="_blank" class="btn-github">
+							<i class="fa fa-github"></i> GitHub
+						</a>
+						<a href="https://github.com/Mangaliso-Maduna" target="_blank" class="btn-view">
+							<i class="fa fa-eye"></i> View Project
+						</a>
+					</div>
+				</div>
+
+				<div class="project-card" data-category="dev">
+					<div class="card-header-bar dev"></div>
+					<div class="card-body-inner">
+						<div class="card-meta">
+							<span class="badge-category badge-dev">Development</span>
+							<span class="card-status complete">● Complete</span>
+						</div>
+						<h3 class="card-title">OCR-Based E-Sports Tournament System</h3>
+						<p class="card-description">Game model extraction tool using Optical Character Recognition to
+							pull structured match data for organising e-sports tournaments. Developed during a Python
+							developer internship at TUVISAI, Istanbul.</p>
+						<div class="tech-tags">
+							<span class="tech-tag">Python</span>
+							<span class="tech-tag">OCR</span>
+							<span class="tech-tag">Tesseract</span>
+							<span class="tech-tag">OpenCV</span>
+							<span class="tech-tag">SQL</span>
+						</div>
+					</div>
+					<div class="card-actions">
+						<a href="https://github.com/Mangaliso-Maduna" target="_blank" class="btn-github">
+							<i class="fa fa-github"></i> GitHub
+						</a>
+						<a href="https://github.com/Mangaliso-Maduna" target="_blank" class="btn-view">
+							<i class="fa fa-eye"></i> View Project
+						</a>
+					</div>
+				</div>
+
+			</div><!-- /#projectsGrid -->
+		</div>
+	</section>
+
+	<!-- FOOTER -->
+	<footer class="portfolio-footer">
+		<div class="container">
+			<p>&copy; Mangaliso Maduna &nbsp;·&nbsp; <a href="https://github.com/Mangaliso-Maduna" target="_blank"
+					style="color:#e8192c; text-decoration:none;">GitHub</a> &nbsp;·&nbsp; <a
+					href="https://www.linkedin.com/in/mangalisom/" target="_blank"
+					style="color:#e8192c; text-decoration:none;">LinkedIn</a></p>
+		</div>
+	</footer>
+
+	<!-- SCRIPTS -->
+	<script src="assets/js/jquery.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script src="assets/js/bootsnav.js"></script>
+
+	<script>
+		// ── Filter logic ─────────────────────────────────────
+		const filterBtns = document.querySelectorAll('.filter-btn');
+		const cards = document.querySelectorAll('.project-card');
+
+		filterBtns.forEach(btn => {
+			btn.addEventListener('click', () => {
+				// update active button
+				filterBtns.forEach(b => b.classList.remove('active'));
+				btn.classList.add('active');
+
+				const filter = btn.dataset.filter;
+
+				cards.forEach(card => {
+					if (filter === 'all' || card.dataset.category === filter) {
+						card.classList.remove('hidden');
+					} else {
+						card.classList.add('hidden');
+					}
+				});
+			});
+		});
+	</script>
+
+</body>
+
+</html>
